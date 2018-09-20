@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body onload="switchtype">
+
+<div class="header">
+<h1>Dashboard</h1>
+</div>
+
+<div class="dropdown">
+<button class="dropbtn">Options</button>
+<div class="dropdown-content">
+<a href="/logout" class="btn btn-default btn-sm">Logout</a>
+</div>
+</div>
+
+<div class = "tab">
+<button class="tablinks" onclick="openTab(event, 'user')">Active Devices</button>
+<button class="tablinks" onclick="openTab(event, 'admin-device')">Admin</button>
+<button class="tablinks" onclick="openTab(event, 'admin-user')">User Modification</button>
+</div>
+
+<div id="user" class="tabcontent">
+
+<table class="container">
+<thead>
+<tr>
+<th><h1>Device ID</h1></th>
+<th><h1>Manufacturer</h1></th>
+<th><h1>Type</h1></th>
+<th><h1>Device Control</h1></th>
+</tr>
+</thead>
+
+<tbody>
+<% for(var i=0; i<val.length; i++) {%>
+<tr>
+<td><%= val[i].device_id %></td>
+<td><%= val[i].manufacturer %></td>
+<td><%= val[i].device_type %></td>
+<td>
+<% if(val[i].device_type == "Sensor"){ %>
+<div id="slide">
+<input type="range" min="10" max="1000" step="10" value="300" data-orientation="vertical">
+</div>
+<% } %>
+
+<% if(val[i].device_type == "Switch"){ %>
+<div id="toggles">
+<label class="switch">
+<input type="checkbox" data-toggle="toggle" data-on="Enabled" data-off="Disabled">
+<span class="slider round"></span>		
+</div>
+<% } %>						
+</label>
+</td>
+</tr>	
+<% } %>		
+</tbody>
+</table>
+
+</div>
+
+
+<div id="admin-device" class="tabcontent">
+
+<h3>Add Device</h3>
+
+<form method="post">
+
+<input type="text" name="d_id" placeholder="Device ID" required="required" />
+<input type="text" name="manu" placeholder="Manufacturer" required="required" />
+<select name="d_type" class="form-control selectpicker">
+<option value="">Select Device Type</option>
+<option>Sensor</option>
+<option>Switch</option>
+</select>
+<button type="submit" class="btn btn-primary btn-block btn-large">Add Device</button>
+
+</form>
+
+<h3>Remove Device</h3>
+
+<form method="post">
+
+<input type="text" name="u" placeholder="Device ID" required="required" />
+<button type="submit" class="btn btn-primary btn-block btn-large">Remove Device</button>
+</form>
+
+</div>
+
+
+<div id="admin-user" class="tabcontent">
+
+<h3>Delete User</h3>
+
+<form method="post">
+
+<input type="text" name="userremove" placeholder="Username" required="required" />
+<button type="submit" class="btn btn-primary btn-block btn-large">Delete User</button>
+
+</form>
+
+<h3>Modify User Access</h3>
+<form method="post">
+
+<input type="text" name="chngun" placeholder="Username" required="required" />
+<div class="col-md-4 selectContainer">
+<div class="input-group">
+<span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+<select name="department" class="form-control selectpicker">
+<option value="">Select Access Level</option>
+<option>0</option>
+<option>1</option>
+</select>
+</div>
+</div>
+<button type="submit" class="btn btn-primary btn-block btn-large">Change Access</button>
+
+</form>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>IoTFrame: Register</title>
+	<link rel="stylesheet" type="text/css" href="style.css" />
+
+	<script>
+        function userNameCheck()
+        {
+            var text = document.getElementById("UserName").value;
+            console.log(text);
+            var xmlhttp;
+            if (window.XMLHttpRequest) {
+                xmlhttp = new XMLHttpRequest();
+            }
+            else {
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+
+            xmlhttp.onreadystatechange = function () {
+                if (xmlhttp.readyState == 4 || xmlhttp.status == 200) {
+                    var response = xmlhttp.responseText;
+                    if(response === "True")
+                        document.getElementById("UserName").style.border="1px solid red";
+                    else
+                        document.getElementById("UserName").style.border="1px solid green";;
+                }
+            }
+            xmlhttp.open("POST", "http://localhost:8080/UserNameCheck", true);
+            xmlhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xmlhttp.send('uname='+text);
+        }
+    </script>
+</head>
+
+<body>
+<div class="login">
+	<div class="login-screen">
+		<div class="app-title">
+			<h1>Register</h1>
+		</div>
+
+		<div class="login-form">
+			<% if (message.length > 0) { %>
+			<div class="alert alert-danger"><%= message %></div>
+			<% } %>
+			<form method="post" action = '/signup'>
+				<div class="control-group">
+					<input type="text" name="username" placeholder="username" required="required" id="UserName" onchange="userNameCheck()">
+					<label class="login-field-icon fui-user" for="login-name"></label>
+				</div>
+
+				<div class="control-group">
+					<input type="password" name="password" placeholder="password" required="required">
+					<label class="login-field-icon fui-lock" for="login-pass"></label>
+				</div>
+
+				<div class="control-group">
+					<input type="email" name="email" placeholder="email" required="required">
+					<label class="login-field-icon fui-lock" for="login-pass"></label>
+				</div>
+
+
+				<div class="control-group">
+					<input type="tel" name="phone" placeholder="10-digit phone number" required="required">
+					<label class="login-field-icon fui-lock" for="login-pass"></label>
+				</div>
+
+				<div class="control-group">
+					<input type="text" name="fname" placeholder="first name" required="required">
+					<label class="login-field-icon fui-lock" for="login-pass"></label>
+				</div>
+
+				<div class="control-group">
+					<input type="text" name="lname" placeholder="last name" required="required">
+					<label class="login-field-icon fui-lock" for="login-pass"></label>
+				</div>
+
+				<button type="submit" class="btn btn-primary btn-large btn-block">Sign-up</button>
+                <a class="login-link" href="/">Back to login page</a>
+			</form>
+		</div>
+	</div>
+</div>
+</body>
+
+</html>

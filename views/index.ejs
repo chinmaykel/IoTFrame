@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>IotFrame: Sign-In</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+
+<body>
+<div class="login">
+    <div class="login-screen">
+        <div class="app-title">
+            <h1>IoTFrame</h1>
+        </div>
+
+        <div class="login-form">
+            <% if (message.length > 0) { %>
+            <div class="alert alert-danger"><%= message %></div>
+            <% } %>
+            <form method="post" action = '/login'>
+                <div class="control-group">
+                    <input type="text" class="login-field" value="" placeholder="username" name="username" required="required">
+                    <label class="login-field-icon fui-user" for="login-name"></label>
+                </div>
+
+                <div class="control-group">
+                    <input type="password" class="login-field" value="" placeholder="password" name="password" required="required">
+                    <label class="login-field-icon fui-lock" for="login-pass"></label>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-large btn-block">Login</button>
+                <a class="login-link" href="/forget">Forgot your password?</a>
+                <a class="login-link" href="/signup">Sign-up</a>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>

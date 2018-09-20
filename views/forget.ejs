@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>IotFrame: Reset Password</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+
+<body>
+<div class="login">
+    <div class="login-screen">
+        <div class="app-title">
+            <h1>Reset Password</h1>
+        </div>
+
+        <div class="login-form">
+            <% if (message.length > 0) { %>
+            <div class="alert alert-danger"><%= message %></div>
+            <% } %>
+            <form method="post" action = '/forget'>
+                <div class="control-group">
+                    <input type="text" name="funame" placeholder="username" required="required">
+                    <label class="login-field-icon fui-user" for="login-name"></label>
+                </div>
+
+                <div class="control-group">
+                    <input type="text" name="fuemail" placeholder="email" required="required">
+                    <label class="login-field-icon fui-lock" for="login-pass"></label>
+                </div>
+
+                <div class="control-group">
+                    <input type="password" name="cpwds" placeholder="new password" required="required">
+                    <label class="login-field-icon fui-lock" for="login-pass"></label>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-large btn-block">Change Password</button>
+                <a class="login-link" href="/">Back to login page</a>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>
